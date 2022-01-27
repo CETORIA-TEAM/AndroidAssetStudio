@@ -8,6 +8,8 @@ export function main(argv) {
 		'-h': '--help',
 		'--local': Boolean,
 		'-l': '--local',
+		'--verbose': Boolean,
+		'-v': '--verbose',
 		'--dont-trim': Boolean, // launcher-icon-generator
 		'-d': '--dont-trim',
 		'--padding': Number, // launcher-icon-generator
@@ -65,27 +67,29 @@ export function main(argv) {
 		url += `${paramPrefix}foreground.space.trim=${args['--dont-trim'] ? '0' : '1'}`
 		paramPrefix = '&'
 		if(args['--padding']) {
-			url += `${paramPrefix}foreground.space.pad=${decodeURIComponent(args['--padding'])}`
+			url += `${paramPrefix}foreground.space.pad=${encodeURIComponent(args['--padding'])}`
 		}
 		if(args['--fore-color']) {
-			url += `${paramPrefix}foreColor=${decodeURIComponent(args['--fore-color'])}`
+			url += `${paramPrefix}foreColor=${encodeURIComponent(args['--fore-color'])}`
 		}
 		if(args['--back-color']) {
-			url += `${paramPrefix}backColor=${decodeURIComponent(args['--back-color'])}`
+			url += `${paramPrefix}backColor=${encodeURIComponent(args['--back-color'])}`
 		}
 		if(args['--crop']) {
 			url += `${paramPrefix}crop=${args['--crop'] ? '1' : '0'}`
 		}
 		if(args['--shape']) {
-			url += `${paramPrefix}backgroundShape=${decodeURIComponent(args['--shape'])}`
+			url += `${paramPrefix}backgroundShape=${encodeURIComponent(args['--shape'])}`
 		}
 		if(args['--effect']) {
-			url += `${paramPrefix}effects=${decodeURIComponent(args['--effect'])}`
+			url += `${paramPrefix}effects=${encodeURIComponent(args['--effect'])}`
 		}
 		if(args['--name']) {
-			url += `${paramPrefix}name=${decodeURIComponent(args['--name'])}`
+			url += `${paramPrefix}name=${encodeURIComponent(args['--name'])}`
 		}
-		console.log(`Opening ${url}`)
+		if(args['--verbose']) {
+			console.log(`Opening ${url}`)
+		}
 		open(url)
 	} else if(!generator) {
 		console.error(`Generator was not defined.`)
