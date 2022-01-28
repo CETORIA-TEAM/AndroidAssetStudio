@@ -64,25 +64,25 @@ export function main(argv) {
 		let url = `${hostUrl}/icons-launcher.html`
 		url += `${paramPrefix}foreground.space.trim=${args['--dont-trim'] ? '0' : '1'}`
 		paramPrefix = '&'
-		if(args['--padding']) {
+		if(typeof(args['--padding']) != 'undefined') {
 			url += `${paramPrefix}foreground.space.pad=${encodeURIComponent(args['--padding'])}`
 		}
-		if(args['--fore-color']) {
+		if(typeof(args['--fore-color']) != 'undefined') {
 			url += `${paramPrefix}foreColor=${encodeURIComponent(args['--fore-color'])}`
 		}
-		if(args['--back-color']) {
+		if(typeof(args['--back-color']) != 'undefined') {
 			url += `${paramPrefix}backColor=${encodeURIComponent(args['--back-color'])}`
 		}
-		if(args['--crop']) {
+		if(typeof(args['--crop']) != 'undefined') {
 			url += `${paramPrefix}crop=${args['--crop'] ? '1' : '0'}`
 		}
-		if(args['--shape']) {
+		if(typeof(args['--shape']) != 'undefined') {
 			url += `${paramPrefix}backgroundShape=${encodeURIComponent(args['--shape'])}`
 		}
-		if(args['--effect']) {
+		if(typeof(args['--effect']) != 'undefined') {
 			url += `${paramPrefix}effects=${encodeURIComponent(args['--effect'])}`
 		}
-		if(args['--name']) {
+		if(typeof(args['--name']) != 'undefined') {
 			url += `${paramPrefix}name=${encodeURIComponent(args['--name'])}`
 		}
 		console.log(`Opening ${url}`)
